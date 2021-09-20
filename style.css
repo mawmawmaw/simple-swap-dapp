@@ -1,0 +1,38 @@
+html,
+body {
+  background-color: #030303;
+  min-height: 100vh;
+}
+.material-icons-outlined{
+    font-family: 'Material Icons';
+}
+h1#user-data {
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 20px;
+}
+.container#login button {
+    width: 100%;
+}
+.btn-logout-container, #user-data, #metamask-warning, #swap{
+    display: none;
+}
+button .material-icons-outlined{
+    color: white;
+}
+.blur {
+    filter: blur(8px);
+}
+#swap select {
+    padding: 4px 10px;
+    margin: 10px 0;
+    background: rgba(66,66,66,0.5);
+    border: 1px solid white;
+    border-radius: 4px;
+    color: white;
+}
+option{
+    background-color: transparent;
+    background-size: 10px;
+    padding-left: 20px;
+    background-position: right;
+}

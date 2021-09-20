@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <title>Vanilla Boilerplate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tailwind.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://npmcdn.com/moralis@latest/dist/moralis.js"></script>
+  </head>
+  <body>
+
+    <header>
+      <div id="header" class="grid grid-cols-3 gap-8 items-start justify-center px-8 py-12 container mx-auto">
+
+        <img class="px-8 py-2" src="logo.png" alt="Maw logo"/>
+
+        <div class="px-8 py-2 w-auto">
+              <h1 id="user-data" class="text-white text-sm px-4 py-4 text-center">Welcome, <span id="user-id"></span></h1>
+        </div>
+
+        <div id="login" class="px-8 py-2 container mx-auto w-auto">
+            <div class="relative group btn-login-container">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                <button id="btn-login" class="relative px-4 py-4 bg-black rounded-lg leading-none flex items-center justify-center">  
+                  <span class="material-icons-outlined pr-4">
+                    login
+                  </span>
+                  <span class="text-white group-hover:text-gray-200 transition duration-200">Login with Metamask</span>
+                </button>
+            </div>
+            <div class="relative group btn-logout-container">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                <button id="btn-logout" class="relative px-4 py-4 bg-black rounded-lg leading-none flex items-center justify-center">
+                  <span class="material-icons-outlined pr-4">
+                    logout
+                  </span>
+                  <span class="text-white text-lg group-hover:text-gray-200 transition duration-200">Logout</span>
+                </button>
+            </div>
+        </div>
+      </div>
+    </header>
+
+    <div id="welcome" class="my-12 py-12 relative container mx-auto w-auto">
+      <div class="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+      <div id="main-banner">
+        <h1 class="text-white text-5xl px-4 py-4 text-center font-bold">MAW DEX</h1>
+      </div>
+      <div id="metamask-warning">
+        <h1 class="text-white text-5xl px-4 py-4 text-center font-bold">Please Install Metamask</h1>
+      </div>
+    </div>
+
+
+    <div id="swap" class="px-8 py-12 container mx-auto w-1/4">
+      <h1 class="text-white text-5xl px-4 py-4 pb-10 text-center font-bold">Swap Tokens</h1>
+      <div id="swap-box" class="relative group px-2 py-2 container mx-auto">
+        <div class="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative px-4 py-4 bg-black rounded-lg leading-none w-full">
+            <h2 class="text-white text-left text-base">Choose the Tokens you want to Swap:</h2>
+            <select id="swap-from" name="swap-from" class="select-token-dropdown w-full">
+              <option value="0" disabled selected>From...</option>
+            </select>
+            <select id="swap-to" name="swap-to" class="select-token-dropdown w-full">
+              <option value="0" disabled selected>To...</option>
+            </select>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="main.js"></script>
+  </body>
+</html>
