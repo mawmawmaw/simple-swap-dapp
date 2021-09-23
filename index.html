@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Vanilla Boilerplate</title>
+    <title>Maw Dex</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link rel="stylesheet" href="style.css">
@@ -61,12 +61,20 @@
         <div class="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
         <div class="relative px-4 py-4 bg-black rounded-lg leading-none w-full">
             <h2 class="text-white text-left text-base">Choose the Tokens you want to Swap:</h2>
-            <select id="swap-from" name="swap-from" class="select-token-dropdown w-full">
-              <option value="0" disabled selected>From...</option>
-            </select>
-            <select id="swap-to" name="swap-to" class="select-token-dropdown w-full">
-              <option value="0" disabled selected>To...</option>
-            </select>
+            <div id="swap-from-box" class="grid grid-cols-4 gap-4">
+              <select id="swap-from" name="swap-from" class="select-token-dropdown col-span-2">
+                <option value="0" disabled selected>From...</option>
+              </select>
+              <div id="swap-from-image-box"></div>
+              <input id="swap-from-ammount" type="text" placeholder="Ammount"/>
+            </div>
+            <div id="swap-to-box" class="grid grid-cols-4 gap-4">
+              <select id="swap-to" name="swap-to" class="select-token-dropdown col-span-2">
+                <option value="0" disabled selected>To...</option>
+              </select>
+              <div id="swap-to-image-box"></div>
+              <input id="swap-to-ammount" type="text" placeholder="Ammount"/>
+            </div>
         </div>
       </div>
     </div>

@@ -36,3 +36,10 @@ option{
     padding-left: 20px;
     background-position: right;
 }
+.selected-token-image{
+    width: 40px;
+}
+input#swap-from-ammount, input#swap-to-ammount {
+    margin: 10px 0;
+    border-radius: 4px;
+}

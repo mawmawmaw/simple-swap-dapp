@@ -2,13 +2,16 @@
 Moralis.initialize("T6WKh57TyasHZOBP9AP9MMW9ATVzeWDvLRUozCq4");
 Moralis.serverURL = "https://hfmv8828kftz.bigmoralis.com:2053/server";
 
+
 let dex;
+let userSelectedChain;
 let tokenOptionsList = [];
 let swapFromTokenAddress;
 let swapToTokenAddress;
 
 //LOGIN FUNCTION WITH MORALIS
 async function login() {
+    const web3 = await Moralis.Web3.enable();
     let user = Moralis.User.current();
     try{
         if (!user) {
@@ -17,7 +20,9 @@ async function login() {
         }
         //USER LOGGED IN
         const userAddress = user.get('ethAddress');
-        let userSelectedChain = 'bsc';
+        const chainIdDec = await web3.eth.getChainId(); // 56 BSC - 1 ETH - 137 MATIC
+        userSelectedChain = chainIdDec == 56 ? 'bsc' : chainIdDec == 1 ? 'eth' : chainIdDec == 137 ? 'polygon' : 'eth';
+        console.log('Connected to: '+userSelectedChain);
         getAvailableTokens(userSelectedChain);
         //HIDE
         document.querySelector(".btn-login-container").style.display = "none";
@@ -62,16 +67,26 @@ async function getAvailableTokens(userSelectedChain) {
         let symbol = availableTokens.tokens[token].symbol;
         let logoURI = availableTokens.tokens[token].logoURI;
         let address = availableTokens.tokens[token].address;
-        option = document.createElement("option");
-        option.setAttribute("value", address);
-        option.setAttribute("name", name);
-        option.innerHTML = '<img src="'+logoURI+'"/>'+ name +' ('+symbol+')';
-        //option.style.backgroundImage = 'url('+logoURI+')';
-        tokenOptionsList.push(option);
+        option1 = document.createElement("option");
+        option1.setAttribute("value", address);
+        option1.setAttribute("name", name);
+        option1.setAttribute('tokenImage', logoURI)
+        option1.innerHTML = '<img src="'+logoURI+'"/>'+ name +' ('+symbol+')';
+        option2 = document.createElement("option");
+        option2.setAttribute("value", address);
+        option2.setAttribute("name", name);
+        option2.setAttribute('tokenImage', logoURI)
+        option2.innerHTML = '<img src="'+logoURI+'"/>'+ name +' ('+symbol+')&nbsp;';
+
+        document.querySelector("#swap-from").appendChild(option1);
+        document.querySelector("#swap-to").appendChild(option2);
+
+        //tokenOptionsList.push(option);
     })
-    buildDropDowns(tokenOptionsList);
+    //buildDropDowns(tokenOptionsList);
 }
 
+ /*
 function buildDropDowns(tokenOptionsList){
     let selects = document.getElementsByClassName("select-token-dropdown");
     for(var i=0; i<selects.length; i++) {
@@ -80,13 +95,28 @@ function buildDropDowns(tokenOptionsList){
         }
       }
 }
+*/
 
 async function selectedSwapFromToken() {
+    document.querySelector("#swap-from-image-box").innerHTML = '';
     swapFromTokenAddress = document.querySelector("#swap-from").value;
+    let image = document.createElement('img');
+    image.src = document.querySelector("#swap-from").selectedOptions[0].getAttribute('tokenImage');
+    image.alt = document.querySelector("#swap-from").selectedOptions[0].getAttribute('name');
+    image.classList = 'selected-token-image'
+    document.querySelector("#swap-from-image-box").appendChild(image);
+
     console.log(swapFromTokenAddress)
 }
 async function selectedSwapToToken() {
+    document.querySelector("#swap-to-image-box").innerHTML = '';
     swapToTokenAddress = document.querySelector("#swap-to").value;
+    let image = document.createElement('img');
+    image.src = document.querySelector("#swap-to").selectedOptions[0].getAttribute('tokenImage');
+    image.alt = document.querySelector("#swap-to").selectedOptions[0].getAttribute('name');
+    image.classList = 'selected-token-image'
+    document.querySelector("#swap-to-image-box").appendChild(image);
+
     console.log(swapToTokenAddress)
 }
 
