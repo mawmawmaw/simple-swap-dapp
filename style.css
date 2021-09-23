@@ -39,7 +39,7 @@ option{
 .selected-token-image{
     width: 40px;
 }
-input#swap-from-ammount, input#swap-to-ammount {
+input#swap-from-amount, input#swap-to-amount {
     margin: 10px 0;
     border-radius: 4px;
 }

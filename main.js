@@ -5,6 +5,7 @@ Moralis.serverURL = "https://hfmv8828kftz.bigmoralis.com:2053/server";
 
 let dex;
 let userSelectedChain;
+let userAddress;
 let tokenOptionsList = [];
 let swapFromTokenAddress;
 let swapToTokenAddress;
@@ -19,10 +20,10 @@ async function login() {
             user = await Moralis.Web3.authenticate();
         }
         //USER LOGGED IN
-        const userAddress = user.get('ethAddress');
-        const chainIdDec = await web3.eth.getChainId(); // 56 BSC - 1 ETH - 137 MATIC
+        userAddress = user.get('ethAddress');
+        const chainIdDec = await web3.eth.getChainId(); // 56 BSC - 1 ETH - 137 MATIC - 4 RinkeByTest 
         userSelectedChain = chainIdDec == 56 ? 'bsc' : chainIdDec == 1 ? 'eth' : chainIdDec == 137 ? 'polygon' : 'eth';
-        console.log('Connected to: '+userSelectedChain);
+        console.log('Connected to: '+userSelectedChain+' ('+chainIdDec+')');
         getAvailableTokens(userSelectedChain);
         //HIDE
         document.querySelector(".btn-login-container").style.display = "none";
@@ -119,6 +120,31 @@ async function selectedSwapToToken() {
 
     console.log(swapToTokenAddress)
 }
+
+document.querySelector("#swap-from-amount").addEventListener("change", ()=>{
+    if(swapFromTokenAddress !== '' && swapToTokenAddress !== '' && document.querySelector("#swap-from-amount").value > 0){
+        getQuote()
+    }
+});
+
+async function getQuote() {
+    let amountChosen = document.querySelector("#swap-from-amount").value;
+    const quote = await Moralis.Plugins.oneInch.quote({
+      chain: userSelectedChain, // The blockchain you want to use (eth/bsc/polygon)
+      fromTokenAddress: swapFromTokenAddress, // The token you want to swap
+      toTokenAddress: swapToTokenAddress, // The token you want to receive
+      amount: 1,
+    });
+    if(quote.error){
+        console.log("Quote: "+quote.message+'('+quote.error+')');
+    }else{
+        console.log("Quote: "+quote.toTokenAmount+'(Received Amount)');
+        console.log("Quote: "+quote.estimatedGas+'(Estimated Gas Fee)');
+    }
+    Object.keys(quote).forEach(value => {
+        console.log(value);
+    })
+  }
 
 /*LISTENERS*/
 document.getElementById("btn-login").onclick = login;
