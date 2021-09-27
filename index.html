@@ -60,21 +60,40 @@
       <div id="swap-box" class="relative group px-2 py-2 container mx-auto">
         <div class="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
         <div class="relative px-4 py-4 bg-black rounded-lg leading-none w-full">
-            <h2 class="text-white text-left text-base">Choose the Tokens you want to Swap:</h2>
-            <div id="swap-from-box" class="grid grid-cols-4 gap-4">
-              <select id="swap-from" name="swap-from" class="select-token-dropdown col-span-2">
+            <h2 class="text-white text-left text-base mb-4">Choose the Tokens you want to Swap:</h2>
+
+            <div class="text-white text-left text-base mb-4" id="swap-error"></div>
+
+            <div id="swap-from-box" class="swap-boxes">
+              <p class="swap-filters">Filter: <input id="filterFrom" placeholder="Filter Tokens..."></p>
+              <select id="swap-from" name="swap-from" class="select-token-dropdown">
                 <option value="0" disabled selected>From...</option>
               </select>
-              <div id="swap-from-image-box"></div>
-              <input id="swap-from-amount" type="text" placeholder="Ammount"/>
+              <div class="swap-second">
+                <input id="swap-from-amount" class="amount-boxes" type="text" placeholder="Ammount"/>
+                <div id="swap-from-image-box"></div>
+              </div>
             </div>
-            <div id="swap-to-box" class="grid grid-cols-4 gap-4">
-              <select id="swap-to" name="swap-to" class="select-token-dropdown col-span-2">
+            <div id="current-from-balance"></div>
+
+            <div id="swap-to-box" class="swap-boxes">
+              <p class="swap-filters">Filter: <input id="filterTo" placeholder="Filter Tokens..."></p>
+              <select id="swap-to" name="swap-to" class="select-token-dropdown">
                 <option value="0" disabled selected>To...</option>
               </select>
-              <div id="swap-to-image-box"></div>
-              <input disabled id="swap-to-amount" type="text" placeholder="Ammount"/>
+              <div class="swap-second">
+                <input disabled id="swap-to-amount" class="amount-boxes" type="text" placeholder="Ammount"/>
+                <div id="swap-to-image-box"></div>
+              </div>
             </div>
+            <div id="estimated-gas"></div>
+
+            <button disabled id="start-swap">
+              <span class="material-icons-outlined pr-4">
+                swap_horiz
+              </span>
+              <span class="text-white group-hover:text-gray-200 transition duration-200">Swap</span>
+            </button>
         </div>
       </div>
     </div>
