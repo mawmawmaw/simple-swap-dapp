@@ -165,8 +165,8 @@ async function selectedSwapFromToken() {
     image.classList = 'selected-token-image'
     document.querySelector("#swap-from-image-box").appendChild(image);
     getBalance(swapFromTokenAddress);
-    //console.log(swapFromTokenAddress)
-    getQuote()
+    //console.log(swapFromTokenAddress);
+    getQuote();
 }
 async function selectedSwapToToken() {
     document.querySelector("#swap-to-image-box").innerHTML = '';
@@ -176,14 +176,14 @@ async function selectedSwapToToken() {
     image.alt = document.querySelector("#swap-to").selectedOptions[0].getAttribute('name');
     image.classList = 'selected-token-image'
     document.querySelector("#swap-to-image-box").appendChild(image);
-    //console.log(swapToTokenAddress)
-    getQuote()
+    //console.log(swapToTokenAddress);
+    getQuote();
 }
 
 document.querySelector("#swap-from-amount").addEventListener("change", ()=>{
     if(swapFromTokenAddress !== '' && swapToTokenAddress !== '' && document.querySelector("#swap-from-amount").value > 0){
-        document.querySelector("#swap-to-amount").value = "Loading..."
-        getQuote()
+        document.querySelector("#swap-to-amount").value = "Loading...";
+        getQuote();
     }
 });
 
