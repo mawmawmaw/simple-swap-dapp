@@ -2,5 +2,6 @@
 
 ## Bugs to fix:
 - Allow not integer amounts in Quotes
-- Get current amount of the "from" token
+- Get current user's balance of the "from" token
+- Check trading pairs
 - Issue with the Swap function
